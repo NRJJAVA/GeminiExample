@@ -28,7 +28,7 @@ public class SecurityConfig {
     public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
-        System.out.println("SecurityConfig initialized with CustomUserDetailsService and PasswordEncoder.");
+       
     }
 
     @Bean
@@ -39,7 +39,6 @@ public class SecurityConfig {
         provider.setUserDetailsService(userDetailsService);  // Custom UserDetailsService
         provider.setPasswordEncoder(passwordEncoder);  // Ensure this is set to BCryptPasswordEncoder
 
-        System.out.println("DaoAuthenticationProvider created with UserDetailsService and PasswordEncoder.");
 
         return new ProviderManager(List.of(provider));
     }
@@ -57,7 +56,6 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults()) // Enables login form-based authentication
                 .httpBasic(Customizer.withDefaults()); // Enables basic authentication for APIs
 
-        System.out.println("HttpSecurity configured for authentication.");
         return http.build();
     }
     }
